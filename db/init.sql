@@ -1,0 +1,5 @@
+-- database: ../test.sqlite
+-- Note: Do not delete the line above! It is helpful for testing your init.sql file.
+--
+-- TODO: entries, tags, and entry_tags table schemas
+-- TODO: seed data
