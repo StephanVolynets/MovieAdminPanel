@@ -6,11 +6,16 @@
 > Briefly explain your site's **administrator** audience.
 > Your audience should be specific, but not arbitrarily specific.
 
-TODO: _cohesive_ audience
+### Audience Description
 
-> Be specific and justify why this audience is a **cohesive** group. (1-2 sentences)
+- Site Moderators and Content Managers
 
-TODO: why is this a _cohesive_ audience?
+
+- > Be specific and justify why this audience is a **cohesive** group. (1-2 sentences)
+
+### Cohesiveness Justification
+
+- This group is cohesive because all members share the common responsibility of managing and organizing the site's content, ensuring that everything is current, accurate, and aligns with the websites purpose.
 
 
 ## Audience Goals
@@ -18,13 +23,18 @@ TODO: why is this a _cohesive_ audience?
 > List each goal below. There is no specific number of goals required for this, but you need
 > enough to do the job (Hint: It's at least 1, but probably no more than 3).
 
-Goal 1: TODO: brief title
+Efficient Content Management
 
-Goal 2: TODO: brief title
+- Quickly add, edit, or remove media entries to keep the catalog fresh and relevant.
 
-Goal 3: TODO: brief title
+Secure Access Controls
 
-TODO: add as many goals as needed
+- Ensure only authorized personnel can make changes to the site's content.
+
+
+Organized Tagging System
+
+- Manage tags effectively to improve content discoverability.
 
 
 ## Persona
@@ -33,16 +43,37 @@ TODO: add as many goals as needed
 > You may type out the persona below with bullet points or include an image of the persona.
 > Just make sure it's easy to read the persona when previewing markdown.
 
-Persona's Name: TODO: persona name
+Persona's Name: Alex Rothschild
 
-TODO: persona details
+
+> Persona Details
+
+- Background
+
+ Experienced content manager with a keen eye for detail and a passion for organization.
+
+- Goals
+
+    1. Needs a streamlined process for updating and managing media entries.
+    2. Requires robust user access controls to prevent unauthorized changes.
+    3. Seeks an intuitive tagging system to categorize content efficiently.
+
+- Challenges
+
+    1. Frustrated by cumbersome content management systems that slow down updates.
+    2. Concerned about security breaches or unauthorized access.
+    3. Struggles with poorly implemented tagging systems that lead to content being hard to find.
+
+> "Face"
+
+ ![Sketch]("")
 
 
 ## Contributors
 
 I affirm that I am submitting my work for the administrator requirements in this milestone.
 
-Admin Lead: TODO: Full Name
+Admin Lead: Stephan Volynets - svv6
 
 
 [← Table of Contents](../design-journey.md)
