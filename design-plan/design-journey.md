@@ -12,7 +12,7 @@ Identify the leads below. Who is primarily responsible for the consumer and admi
 
 | **Consumer** Lead | **Admin** Lead |
 | ----------------- | -------------- |
-| TODO: NetID       | TODO: NetID    |
+| TODO: Darius ?     | SVV6 - Stephan Volynets |
 
 ## Planning
 
