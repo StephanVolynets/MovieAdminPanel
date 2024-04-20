@@ -96,5 +96,5 @@ $sql .= ' GROUP BY tf.film_id ORDER BY tf.ranking DESC';
             <p class="text-center text-gray-600">No films found in the catalog.</p>
         <?php endif; ?>
     </main>
-     <?php include 'includes/footer.php'; ?> style points  -->
+     <?php include 'includes/footer.php'; ?>
 </html>

@@ -7,35 +7,36 @@
         <a href="#" class="inline-block bg-white text-blue-500 hover:bg-blue-600 hover:text-white font-bold py-2 px-4 rounded">Learn More</a>
       </div>
       <div>
-        <h3 class="text-xl font-bold mb-4">Quick Links</h3>
-        <ul class="space-y-2">
+        <h3 class="text-xl font-bold mb-4 text-center">Quick Links</h3>
+        <ul class="space-y-2 text-center">
           <li><a href="#" class="hover:text-gray-300 transition duration-300">Home</a></li>
           <li><a href="#" class="hover:text-gray-300 transition duration-300">About</a></li>
           <li><a href="#" class="hover:text-gray-300 transition duration-300">Contact</a></li>
           <li><a href="#" class="hover:text-gray-300 transition duration-300">Privacy Policy</a></li>
         </ul>
       </div>
-      <div>
-        <h3 class="text-xl font-bold mb-4">Follow Us</h3>
-        <div class="flex space-x-4 mb-4">
-          <a href="#" class="text-white hover:text-gray-300 transition duration-300">
-            <i class="fab fa-facebook fa-2x"></i>
-          </a>
-          <a href="#" class="text-white hover:text-gray-300 transition duration-300">
-            <i class="fab fa-twitter fa-2x"></i>
-          </a>
-          <a href="#" class="text-white hover:text-gray-300 transition duration-300">
-            <i class="fab fa-instagram fa-2x"></i>
-          </a>
-        </div>
-        <form class="flex">
-          <input type="email" class="bg-gray-100 text-gray-800 rounded-l-lg py-2 px-4 focus:outline-none" placeholder="Enter your email">
-          <button class="bg-white text-blue-500 hover:bg-blue-600 hover:text-white font-bold py-2 px-4 rounded-r-lg transition duration-300">Mail</button>
-        </form>
+    <div class="ml-auto">
+      <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+      <div class="flex space-x-4 mb-4">
+        <a href="#" class="text-white hover:text-gray-300 transition duration-300">
+        <i class="fab fa-facebook fa-2x"></i>
+        </a>
+        <a href="#" class="text-white hover:text-gray-300 transition duration-300">
+        <i class="fab fa-twitter fa-2x"></i>
+        </a>
+        <a href="#" class="text-white hover:text-gray-300 transition duration-300">
+        <i class="fab fa-instagram fa-2x"></i>
+        </a>
+      </div>
+      <form class="flex">
+        <input type="email" class="bg-gray-100 text-gray-800 rounded-l-lg py-2 px-4 focus:outline-none" placeholder="Enter your email">
+        <button class="bg-white text-blue-500 hover:bg-blue-600 hover:text-white font-bold py-2 px-4 rounded-r-lg transition duration-300">Mail</button>
+      </form>
+    </div>
       </div>
     </div>
-    <div class="mt-8 border-t border-gray-700 pt-8 flex justify-between items-center">
-      <p class="text-sm">&copy; 2024 Stephan's Cinematic Showcase. All rights reserved.</p>
+    <div class="mt-4 border-t border-gray-700 pt-4 text-center">
+      <p class="text-sm" text>&copy; 2024 Stephan's Cinematic Showcase. All rights reserved.</p>
       <div class="flex space-x-4">
         <a href="#" class="text-white hover:text-gray-300 transition duration-300">
           <i class="fas fa-globe fa-lg"></i>
