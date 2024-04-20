@@ -1,7 +1,10 @@
 <?php
 
 const ROUTES = array(
-  "/" => "pages/home.php"
+  "/" => "pages/home.php",
+  "/delete_film" => "pages/delete_film.php",
+  "/admin_view_all" => "pages/admin_view_all.php", // Note the comma here
+  "/edit_film" => "pages/edit_film.php" // This is the new route
 );
 
 // return 500 server error for unhandled exceptions

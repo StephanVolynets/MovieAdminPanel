@@ -1,5 +1,4 @@
 <?php
-require_once '../includes/db.php';
 
 $film = null;
 
@@ -7,12 +6,11 @@ $film = null;
 if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
     $id = $_GET['id'];
 
-    // Fetch the current film data
-    $stmt = $pdo->prepare('SELECT * FROM Top_Films WHERE film_id = ?');
-    $stmt->execute([$id]);
-    $film = $stmt->fetch();
+// Fetch the current film data
+    $stmt = $db->prepare('SELECT * FROM Top_Films WHERE film_id = ?');
+    $stmt->execute([$id]); // PDO EXTENSION METHODS, $id is passed as an array FOR security
+    $film = $stmt->fetch(); // PDO EXTENSION METHODS
 }
-
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Validate and assign POST data to variables
@@ -23,20 +21,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $awards = trim($_POST['awards']);
 
     // Update the film data in the database
-    $stmt = $pdo->prepare('UPDATE Top_Films SET title = ?, director = ?, release_year = ?, ranking = ?, awards = ? WHERE film_id = ?');
+    $stmt = $db->prepare('UPDATE Top_Films SET title = ?, director = ?, release_year = ?, ranking = ?, awards = ? WHERE film_id = ?');
     $stmt->execute([$title, $director, $year, $ranking, $awards, $id]);
 
     // Redirect after update
-    header('Location: admin_view_all.php');
+    header('Location: admin_view_all');
     exit;
 }
 
-include '../includes/admin_header.php';
+include '../includes/admin_head';
 ?>
 
 <div class="edit-film-form">
     <h1>Edit Film</h1>
-    <form action="edit_film.php?id=<?= $id ?>" method="post">
+    <form action="edit_film?id=<?= $id ?>" method="post">
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" name="title" required value="<?= htmlspecialchars($film['title'] ?? '') ?>">

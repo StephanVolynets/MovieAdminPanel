@@ -6,10 +6,10 @@ CREATE TABLE IF NOT EXISTS Top_Films (
     film_id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     director TEXT NOT NULL,
-    synopsis TEXT,
-    release_year INTEGER,
-    ranking REAL,
-    awards TEXT
+    synopsis TEXT NOT NULL,
+    release_year INTEGER NOT NULL,
+    ranking REAL NOT NULL,
+    awards TEXT NOT NULL
 );
 
 -- Tags Table
