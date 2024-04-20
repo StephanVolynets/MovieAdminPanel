@@ -43,7 +43,7 @@ TODO: get tag names for record
 
 I affirm that I am submitting my work for the administrator requirements in this milestone.
 
-Admin Lead: TODO: Full Name
+Admin Lead: Stephan Volynets
 
 
 [← Table of Contents](../design-journey.md)
