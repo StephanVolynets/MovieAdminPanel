@@ -1,6 +1,9 @@
 -- database: ../test.sqlite
 -- Note: Do not delete the line above! It is helpful for testing your init.sql file.
--- Create the tables for Top_Films, Tags, and Film_Tags
+-- Setting up keys in tables:
+-- PRIMARY KEY: Unique ID for each row, like film_id in Top_Films or tag_id in Tags
+-- FOREIGN KEY in Film_Tags links back to Top_Films and Tags using film_id and tag_id
+-- FOREIGN KEY setup means if we delete a film or tag, all related entries in Film_Tags vanish too (ON DELETE CASCADE)
 -- Films Table
 CREATE TABLE IF NOT EXISTS Top_Films (
     film_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -86,15 +89,6 @@ VALUES
         2
     ),
     (
-        'The Lord of the Rings: The Return of the King',
-        'Peter Jackson',
-        'Gandalf and Aragorn lead the World of Men against Sauron''s army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.',
-        2003,
-        9.0,
-        '11 Oscars including Best Picture, Best Director',
-        11
-    ),
-    (
         'Forrest Gump',
         'Robert Zemeckis',
         'The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other historical events unfold through the perspective of an Alabama man with an IQ of 75.',
@@ -129,6 +123,33 @@ VALUES
         8.6,
         '5 Oscars including Best Picture, Best Actor, Best Actress',
         5
+    ),
+    (
+        'The Shining',
+        'Stanley Kubrick',
+        'A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.',
+        1980,
+        8.4,
+        '1 Oscar nomination',
+        1
+    ),
+    (
+        'The Dark Knight',
+        'Christopher Nolan',
+        'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
+        2008,
+        9.0,
+        '2 Oscars, 8 Oscar nominations',
+        10
+    ),
+    (
+        'Interstellar',
+        'Christopher Nolan',
+        'A team of explorers travel through a wormhole in space in an attempt to ensure humanity''s survival.',
+        2014,
+        8.6,
+        '1 Oscar win, 4 Oscar nominations',
+        5
     );
 
 -- Seed data for Tags
@@ -143,7 +164,8 @@ VALUES
     ('Thriller'),
     ('Sci-Fi'),
     ('Biography'),
-    ('Horror');
+    ('Horror'),
+    ('Superhero');
 
 -- Seed data for Film_Tags
 INSERT INTO
@@ -163,22 +185,38 @@ VALUES
     -- Pulp Fiction has Crime
     (5, 5),
     -- Pulp Fiction also has Comedy
-    (6, 2),
-    -- The Lord of the Rings: The Return of the King has Action
-    (6, 3),
-    -- The Lord of the Rings: The Return of the King also has Fantasy
-    (7, 1),
+    (6, 1),
     -- Forrest Gump has Drama
-    (7, 8),
+    (6, 8),
     -- Forrest Gump also has Biography
-    (8, 2),
+    (7, 2),
     -- The Matrix has Action
-    (8, 7),
+    (7, 7),
     -- The Matrix also has Sci-Fi
-    (9, 1),
+    (8, 1),
     -- Goodfellas has Drama
-    (9, 4),
+    (8, 4),
     -- Goodfellas also has Crime
-    (10, 6),
+    (9, 6),
     -- The Silence of the Lambs has Thriller
-    (10, 9);
+    (9, 9),
+    -- The Silence of the Lambs also has Horror
+    (10, 1),
+    -- The Shining has Drama
+    (10, 6),
+    -- The Shining also has Thriller
+    (10, 9),
+    -- The Shining also has Horror
+    (11, 2),
+    -- The Dark Knight has Action
+    (11, 3),
+    -- The Dark Knight also has Fantasy
+    (11, 6),
+    -- The Dark Knight also has Thriller
+    (11, 10),
+    -- The Dark Knight also has Superhero
+    (12, 2),
+    -- Interstellar has Action
+    (12, 7);
+
+-- Interstellar also has Sci-Fi

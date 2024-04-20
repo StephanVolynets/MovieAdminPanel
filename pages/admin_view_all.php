@@ -119,6 +119,7 @@ $films = $stmt->fetchAll();
                 </tbody>
             </table>
         </div>
+    <?php include 'includes/admin_footer.php'; ?>  <!--style points  -->
     </div>
 </body>
 </html>

@@ -13,7 +13,7 @@
 > Design the URL for the consumer's detail page.
 > What is the URL for the detail page?
 
-    1. "/movie-details"
+    1. "/details"
 
  git config --global user.email "svv6@cornell.edu"
   git config --global user.name "Stephan Volynets"
