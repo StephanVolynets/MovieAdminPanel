@@ -1,66 +1,124 @@
 <?php
-// Assuming $db is globally available
 
-// Prepare a statement to select all films
-try {
-    $stmt = $db->prepare('SELECT * FROM Top_Films ORDER BY release_year DESC');
-    $stmt->execute();
-    $films = $stmt->fetchAll();
-} catch (PDOException $e) {
-    // Handle database errors gracefully
-    error_log("Insert the form data into the database.");
-}
+// Fetch total number of films
+$stmt = $db->query('SELECT COUNT(*) AS total_films FROM Top_Films');
+$total_films = $stmt->fetch()['total_films'];
 
-// Include the admin header partial
-include '../includes/admin_header.php'; // Ensure this file exists and contains the starting HTML tags
+// Fetch total number of distinct directors
+$stmt = $db->query('SELECT COUNT(DISTINCT director) AS total_directors FROM Top_Films');
+$total_directors = $stmt->fetch()['total_directors'];
+
+// Fetch total number of awards
+$stmt = $db->query('SELECT SUM(award_count) AS total_awards FROM Top_Films');
+$total_awards = $stmt->fetch()['total_awards'];
+
+// Fetch average rating
+$stmt = $db->query('SELECT AVG(ranking) AS average_rating FROM Top_Films');
+$average_rating = $stmt->fetch()['average_rating'];
+
+// Fetch all films
+$stmt = $db->query('SELECT * FROM Top_Films ORDER BY release_year DESC');
+$films = $stmt->fetchAll();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - View All Films</title>
-    <!-- Include Tailwind CSS -->
+    <title>Admin Dashboard - Top Films</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Include Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #6366F1, #4F46E5);
+        }
+        .bg-primary {
+            background-color: #6366F1;
+        }
+        .text-primary {
+            color: #6366F1;
+        }
+        th, td {
+            text-align: center;
+        }
+        tbody tr:hover {
+            background-color: #F3F4F6;
+        }
+        .btn-primary {
+            background-color: #6366F1;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #4F46E5;
+        }
+        .btn-danger {
+            background-color: #EF4444;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .btn-danger:hover {
+            background-color: #DC2626;
+        }
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
 </head>
-<body>
-<div class="container mt-4">
-    <h1 class="text-3xl font-bold mb-4">Admin Dashboard - View All Films</h1>
-    <table class="table-auto w-full mb-4">
-        <thead>
-            <tr class="bg-gray-200">
-                <th class="px-4 py-2 text-left">Title</th>
-                <th class="px-4 py-2 text-left">Director</th>
-                <th class="px-4 py-2 text-left">Year</th>
-                <th class="px-4 py-2 text-left">Ranking</th>
-                <th class="px-4 py-2 text-left">Awards</th>
-                <th class="px-4 py-2 text-left">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($films as $film): ?>
-            <tr>
-                <td class="border px-4 py-2"><?= htmlspecialchars($film['title']) ?></td>
-                <td class="border px-4 py-2"><?= htmlspecialchars($film['director']) ?></td>
-                <td class="border px-4 py-2"><?= htmlspecialchars($film['release_year']) ?></td>
-                <td class="border px-4 py-2"><?= htmlspecialchars($film['ranking']) ?></td>
-                <td class="border px-4 py-2"><?= htmlspecialchars($film['awards']) ?></td>
-                <td class="border px-4 py-2">
-                    <a href="edit_film?id=<?= $film['film_id'] ?>" class="btn btn-primary">Edit</a>
-                    <a href="delete_film?id=<?= $film['film_id'] ?>" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
-
-    <?php
-    // Include the admin footer partial
-    include '../includes/admin_footer.php'; // Ensure this file exists and contains the ending HTML tags
-    ?>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-4 text-white text-center bg-gradient-primary py-4">Top Films Admin Dashboard</h1>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 text-center">
+            <div class="bg-white rounded-lg p-4 shadow-lg">
+                <h2 class="text-lg font-bold mb-2">Total Films</h2>
+                <p class="text-4xl font-bold text-primary"><?= $total_films ?></p>
+            </div>
+            <div class="bg-white rounded-lg p-4 shadow-lg">
+                <h2 class="text-lg font-bold mb-2">Directors</h2>
+                <p class="text-4xl font-bold text-primary"><?= $total_directors ?></p>
+            </div>
+            <div class="bg-white rounded-lg p-4 shadow-lg">
+                <h2 class="text-lg font-bold mb-2">Total Awards</h2>
+                <p class="text-4xl font-bold text-primary"><?= $total_awards ?></p>
+            </div>
+            <div class="bg-white rounded-lg p-4 shadow-lg">
+                <h2 class="text-lg font-bold mb-2">Average Rating</h2>
+                <p class="text-4xl font-bold text-primary"><?= number_format($average_rating, 1) ?></p>
+            </div>
+        </div>
+        <h2 class="text-3xl font-bold mb-4 text-center">Films</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full table-auto bg-white rounded-lg shadow-lg">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        <th class="px-4 py-2">Title</th>
+                        <th class="px-4 py-2">Director</th>
+                        <th class="px-4 py-2">Year</th>
+                        <th class="px-4 py-2">Ranking</th>
+                        <th class="px-4 py-2">Awards</th>
+                        <th class="px-4 py-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($films as $film): ?>
+                    <tr>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($film['title']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($film['director']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($film['release_year']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($film['ranking']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($film['award_count']) ?></td>
+                        <td class="border px-4 py-2 flex justify-center space-x-2">
+                            <a href="edit_film?id=<?= $film['film_id'] ?>" class="btn-primary py-1 px-2 rounded">Edit</a>
+                            <a href="delete_film?id=<?= $film['film_id'] ?>" class="btn-danger py-1 px-2 rounded">Delete</a>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

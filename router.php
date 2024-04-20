@@ -2,6 +2,7 @@
 
 const ROUTES = array(
   "/" => "pages/home.php",
+  "/details" => "pages/details.php",
   "/delete_film" => "pages/delete_film.php",
   "/admin_view_all" => "pages/admin_view_all.php", // Note the comma here
   "/edit_film" => "pages/edit_film.php" // This is the new route
