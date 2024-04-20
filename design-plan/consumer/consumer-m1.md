@@ -6,11 +6,11 @@
 > Briefly explain your site's **consumer** audience.
 > Your audience should be specific, but not arbitrarily specific.
 
-TODO: _cohesive_ audience
+ Enthusiasts of great films and documentaries.
 
 > Be specific and justify why this audience is a **cohesive** group. (1-2 sentences)
 
-TODO: why is this a _cohesive_ audience?
+This audience is cohesive because its members share a strong interest in niche film genres, often seeking educational and thought-provoking content that is not typically found in mainstream media outlets.
 
 
 ## Audience Goals
@@ -18,13 +18,9 @@ TODO: why is this a _cohesive_ audience?
 > List each goal below. There is no specific number of goals required for this, but you need
 > enough to do the job (Hint: It's at least 1, but probably no more than 3).
 
-Goal 1: TODO: brief title
-
-Goal 2: TODO: brief title
-
-Goal 3: TODO: brief title
-
-TODO: add as many goals as needed
+1. Discover New Content: Users want to easily discover new indie films and documentaries that match their interests.
+2. Access Detailed Information: Users seek in-depth details about films, such as directorial style, themes, and user-generated reviews.
+3. Engage with Community: Users wish to engage with a community of like-minded enthusiasts, sharing recommendations and discussions about content.
 
 
 ## Persona
@@ -33,16 +29,29 @@ TODO: add as many goals as needed
 > You may type out the persona below with bullet points or include an image of the persona.
 > Just make sure it's easy to read the persona when previewing markdown.
 
-Persona's Name: TODO: persona name
+Persona's Name: Dexter Morgan
 
-TODO: persona details
+- A college student studying film theory, passionate about discovering and analyzing independent cinema.
+
+- Goals:
+  - Finds platforms that offer a wide range of indie films and documentaries.
+  - Looks for detailed insights and critiques of films to deepen understanding.
+  - Seeks an active community for discussions and to gain new perspectives.
+
+- Challenges:
+  - Difficulty finding platforms that cater specifically to indie film enthusiasts.
+  - Often encounters incomplete or superficial information about films.
+  - Lacks interaction with a community that shares a deep interest in niche film genres.
+
+
+- TODO: "Face": (Assuming a placeholder image is used here, you can add a sketch or any representative image.)
 
 
 ## Contributors
 
 I affirm that I am submitting my work for the consumer requirements in this milestone.
 
-Consumer Lead: TODO: Full Name
+Consumer Lead: Stephan Volynets
 
 
 [← Table of Contents](../design-journey.md)
