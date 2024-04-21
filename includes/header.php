@@ -17,9 +17,8 @@
         <div class="container mx-auto px-4 py-8">
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="text-4xl font-bold tracking-wide">Stephan's Cinematic Showcase</h1>
-                    <p class="text-xl mt-2">Discover the Best Films of All Time</p>
-                </div>
+                    <h1 class="text-4xl font-bold tracking-wide" style="font-family: 'Roboto', sans-serif;">Stephan's Cinematic Showcase</h1>
+                    <p class="text-xl mt-2" style="font-family: 'Roboto', sans-serif;">Discover the Best Films of All Time</p>
                 <div>
                     <a href="admin_view_all" class="bg-white text-purple-600 font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-purple-100 transition duration-300">Admin Login</a>
                 </div>

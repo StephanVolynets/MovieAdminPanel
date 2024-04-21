@@ -66,6 +66,9 @@ $films = $stmt->fetchAll();
         .shadow-lg {
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
+        .h2 {
+            font:
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -77,40 +80,40 @@ $films = $stmt->fetchAll();
             <i class="fas fa-film fa-2x"></i>
         </div>
         <div>
-            <h2 class="text-xl font-bold mb-2">Total Films</h2>
-            <p class="text-4xl font-bold text-primary"><?= $total_films ?></p>
+            <h2 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Total Films</h2>
+            <p class="text-4xl font-bold text-primary" style="font-family: 'Roboto', sans-serif;"><?= $total_films ?></p>
         </div>
-    </div>
-    <div class="bg-white rounded-2xl p-6 shadow-3d flex items-center">
-        <div class="bg-green-500 text-white rounded-full p-3 mr-4">
-            <i class="fas fa-user-tie fa-2x"></i>
         </div>
-        <div>
-            <h2 class="text-xl font-bold mb-2">Directors</h2>
-            <p class="text-4xl font-bold text-primary"><?= $total_directors ?></p>
+        <div class="bg-white rounded-2xl p-6 shadow-3d flex items-center">
+            <div class="bg-green-500 text-white rounded-full p-3 mr-4">
+                <i class="fas fa-user-tie fa-2x"></i>
+            </div>
+            <div>
+                <h2 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Directors</h2>
+                <p class="text-4xl font-bold text-primary" style="font-family: 'Roboto', sans-serif;"><?= $total_directors ?></p>
+            </div>
         </div>
-    </div>
-    <div class="bg-white rounded-2xl p-6 shadow-3d flex items-center">
-        <div class="bg-yellow-500 text-white rounded-full p-3 mr-4">
-            <i class="fas fa-award fa-2x"></i>
+        <div class="bg-white rounded-2xl p-6 shadow-3d flex items-center">
+            <div class="bg-yellow-500 text-white rounded-full p-3 mr-4">
+                <i class="fas fa-award fa-2x"></i>
+            </div>
+            <div>
+                <h2 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Total Awards</h2>
+                <p class="text-4xl font-bold text-primary" style="font-family: 'Roboto', sans-serif;"><?= $total_awards ?></p>
+            </div>
         </div>
-        <div>
-            <h2 class="text-xl font-bold mb-2">Total Awards</h2>
-            <p class="text-4xl font-bold text-primary"><?= $total_awards ?></p>
+        <div class="bg-white rounded-2xl p-6 shadow-3d flex items-center">
+            <div class="bg-red-500 text-white rounded-full p-3 mr-4">
+                <i class="fas fa-star fa-2x"></i>
+            </div>
+            <div>
+                <h2 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Average Rating</h2>
+                <p class="text-4xl font-bold text-primary" style="font-family: 'Roboto', sans-serif;"><?= number_format($average_rating, 1) ?></p>
+            </div>
         </div>
-    </div>
-    <div class="bg-white rounded-2xl p-6 shadow-3d flex items-center">
-        <div class="bg-red-500 text-white rounded-full p-3 mr-4">
-            <i class="fas fa-star fa-2x"></i>
-        </div>
-        <div>
-            <h2 class="text-xl font-bold mb-2">Average Rating</h2>
-            <p class="text-4xl font-bold text-primary"><?= number_format($average_rating, 1) ?></p>
-        </div>
-    </div>
 </div>
 
-<h2 class="text-3xl font-bold my-6 text-center">Films</h2>
+<h2 class="text-3xl font-bold my-6 text-center" style="font-family: 'Roboto', sans-serif;">Films</h2>
 <div class="bg-white rounded-2xl shadow-3d overflow-hidden">
     <table class="w-full table-auto">
         <thead>
