@@ -69,57 +69,76 @@ $films = $stmt->fetchAll();
     </style>
 </head>
 <body class="bg-gray-100">
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-4 text-white text-center bg-gradient-primary py-4">Top Films Admin Dashboard</h1>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 text-center">
-            <div class="bg-white rounded-lg p-4 shadow-lg">
-                <h2 class="text-lg font-bold mb-2">Total Films</h2>
-                <p class="text-4xl font-bold text-primary"><?= $total_films ?></p>
-            </div>
-            <div class="bg-white rounded-lg p-4 shadow-lg">
-                <h2 class="text-lg font-bold mb-2">Directors</h2>
-                <p class="text-4xl font-bold text-primary"><?= $total_directors ?></p>
-            </div>
-            <div class="bg-white rounded-lg p-4 shadow-lg">
-                <h2 class="text-lg font-bold mb-2">Total Awards</h2>
-                <p class="text-4xl font-bold text-primary"><?= $total_awards ?></p>
-            </div>
-            <div class="bg-white rounded-lg p-4 shadow-lg">
-                <h2 class="text-lg font-bold mb-2">Average Rating</h2>
-                <p class="text-4xl font-bold text-primary"><?= number_format($average_rating, 1) ?></p>
-            </div>
+   <?php include 'includes/admin_header.php'; ?>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="bg-white rounded-2xl p-6 shadow-3d flex items-center">
+        <div class="bg-blue-500 text-white rounded-full p-3 mr-4">
+            <i class="fas fa-film fa-2x"></i>
         </div>
-        <h2 class="text-3xl font-bold mb-4 text-center">Films</h2>
-        <div class="overflow-x-auto">
-            <table class="w-full table-auto bg-white rounded-lg shadow-lg">
-                <thead>
-                    <tr class="bg-primary text-white">
-                        <th class="px-4 py-2">Title</th>
-                        <th class="px-4 py-2">Director</th>
-                        <th class="px-4 py-2">Year</th>
-                        <th class="px-4 py-2">Ranking</th>
-                        <th class="px-4 py-2">Awards</th>
-                        <th class="px-4 py-2">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($films as $film): ?>
-                    <tr>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($film['title']) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($film['director']) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($film['release_year']) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($film['ranking']) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($film['award_count']) ?></td>
-                        <td class="border px-4 py-2 flex justify-center space-x-2">
-                            <a href="edit_film?id=<?= $film['film_id'] ?>" class="btn-primary py-1 px-2 rounded">Edit</a>
-                            <a href="delete_film?id=<?= $film['film_id'] ?>" class="btn-danger py-1 px-2 rounded">Delete</a>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+        <div>
+            <h2 class="text-xl font-bold mb-2">Total Films</h2>
+            <p class="text-4xl font-bold text-primary"><?= $total_films ?></p>
         </div>
-    <?php include 'includes/admin_footer.php'; ?>  <!--style points  -->
     </div>
-</body>
-</html>
+    <div class="bg-white rounded-2xl p-6 shadow-3d flex items-center">
+        <div class="bg-green-500 text-white rounded-full p-3 mr-4">
+            <i class="fas fa-user-tie fa-2x"></i>
+        </div>
+        <div>
+            <h2 class="text-xl font-bold mb-2">Directors</h2>
+            <p class="text-4xl font-bold text-primary"><?= $total_directors ?></p>
+        </div>
+    </div>
+    <div class="bg-white rounded-2xl p-6 shadow-3d flex items-center">
+        <div class="bg-yellow-500 text-white rounded-full p-3 mr-4">
+            <i class="fas fa-award fa-2x"></i>
+        </div>
+        <div>
+            <h2 class="text-xl font-bold mb-2">Total Awards</h2>
+            <p class="text-4xl font-bold text-primary"><?= $total_awards ?></p>
+        </div>
+    </div>
+    <div class="bg-white rounded-2xl p-6 shadow-3d flex items-center">
+        <div class="bg-red-500 text-white rounded-full p-3 mr-4">
+            <i class="fas fa-star fa-2x"></i>
+        </div>
+        <div>
+            <h2 class="text-xl font-bold mb-2">Average Rating</h2>
+            <p class="text-4xl font-bold text-primary"><?= number_format($average_rating, 1) ?></p>
+        </div>
+    </div>
+</div>
+
+<h2 class="text-3xl font-bold my-6 text-center">Films</h2>
+<div class="bg-white rounded-2xl shadow-3d overflow-hidden">
+    <table class="w-full table-auto">
+        <thead>
+            <tr class="bg-gradient-primary text-white">
+                <th class="px-4 py-2">Title</th>
+                <th class="px-4 py-2">Director</th>
+                <th class="px-4 py-2">Year</th>
+                <th class="px-4 py-2">Ranking</th>
+                <th class="px-4 py-2">Awards</th>
+                <th class="px-4 py-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($films as $film): ?>
+            <tr>
+                <td class="border px-4 py-2"><?= htmlspecialchars($film['title']) ?></td>
+                <td class="border px-4 py-2"><?= htmlspecialchars($film['director']) ?></td>
+                <td class="border px-4 py-2"><?= htmlspecialchars($film['release_year']) ?></td>
+                <td class="border px-4 py-2"><?= htmlspecialchars($film['ranking']) ?></td>
+                <td class="border px-4 py-2"><?= htmlspecialchars($film['award_count']) ?></td>
+                <td class="border px-4 py-2 flex justify-center space-x-2">
+                    <a href="edit_film?id=<?= $film['film_id'] ?>" class="btn-primary py-1 px-2 rounded">Edit</a>
+                    <a href="delete_film?id=<?= $film['film_id'] ?>" class="btn-danger py-1 px-2 rounded">Delete</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
+<?php include 'includes/admin_footer.php'; ?>

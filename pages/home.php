@@ -36,6 +36,7 @@ $sql .= ' GROUP BY tf.film_id ORDER BY tf.ranking DESC';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include 'includes/header.php'; ?>
     <title>Top Ranked Films</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -45,6 +46,7 @@ $sql .= ' GROUP BY tf.film_id ORDER BY tf.ranking DESC';
         }
     </style>
 </head>
+
 <body class="bg-gray-100">
     <header class="bg-gradient-to-r from-blue-500 to-purple-500 text-white py-6">
         <div class="container mx-auto px-4">
