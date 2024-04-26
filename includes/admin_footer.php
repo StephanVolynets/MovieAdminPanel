@@ -20,8 +20,8 @@
           </li>
         </ul>
       </div>
-      <a href="https://github.com/StephanVolynets" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-        <img src="https://brand.cornell.edu/assets/images/downloads/logos/reduced/cornell-reduced.svg" class="h-10 filter drop-shadow-lg" alt="Cornell Seal" />
+      <a href="https://github.com/StephanVolynets" class="flex items-center mb-4 mt-3 sm:mb-0 space-x-3 rtl:space-x-reverse">
+        <img src="https://brand.cornell.edu/assets/images/downloads/logos/reduced/cornell-reduced.svg" class="h-11 filter drop-shadow-lg" alt="Cornell Seal" />
       </a>
     </div>
     <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
