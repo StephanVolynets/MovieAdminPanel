@@ -1,6 +1,4 @@
 <?php
-include_once('includes/db.php');
-
 // User Messages
 $session_messages = array();
 $signup_messages = array();
@@ -18,21 +16,6 @@ function find_user($db, $user_id)
   )->fetchAll();
   if ($records) {
     // users are unique, there should only be 1 record
-    return $records[0];
-  }
-  return NULL;
-}
-
-// find group's record from user_id
-function find_group($db, $group_id)
-{
-  $records = exec_sql_query(
-    $db,
-    "SELECT * FROM groups WHERE id = :group_id;",
-    array(':group_id' => $group_id)
-  )->fetchAll();
-  if ($records) {
-    // groups are unique, there should only be 1 record
     return $records[0];
   }
   return NULL;
@@ -71,8 +54,8 @@ function is_user_logged_in()
   return ($current_user != NULL);
 }
 
-// is the user a member
-function is_user_member_of($db, $group_id)
+// is the user an admin
+function is_user_admin($db)
 {
   global $current_user;
   if ($current_user === NULL) {
@@ -81,13 +64,10 @@ function is_user_member_of($db, $group_id)
 
   $records = exec_sql_query(
     $db,
-    "SELECT id FROM user_groups WHERE (group_id = :group_id) AND (user_id = :user_id);",
-    array(
-      ':group_id' => $group_id,
-      ':user_id' => $current_user['id']
-    )
+    "SELECT is_admin FROM users WHERE (id = :user_id);",
+    array(':user_id' => $current_user['id'])
   )->fetchAll();
-  if ($records) {
+  if ($records && $records[0]['is_admin']) {
     return True;
   } else {
     return False;
@@ -189,6 +169,8 @@ function cookie_login($db, $session)
       // session has expired
       error_log("  session expired");
       logout($db, $session);
+
+
     }
   }
 
@@ -219,34 +201,9 @@ function logout($db, $session)
 
   error_log("  logout successful");
 
-  // Remove logout query string parameter
-  $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2)[0];
-
-  // Remove a logout query string parameter
-  $params = $_GET;
-  unset($params['logout']);
-
-  // Add logout param to current page URL.
-  $redirect_url = htmlspecialchars($request_uri) . '?' . http_build_query($params);
-
-  // Send the user back to the same page
-  header('Location: ' . $redirect_url);
+  // Send the user back to the login page
+  header('Location: /');
   exit();
-}
-
-// logout url for the current page
-function logout_url()
-{
-  $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2)[0];
-
-  // Add a logout query string parameter
-  $params = $_GET;
-  $params['logout'] = '';
-
-  // Add logout param to current page URL.
-  $logout_url = htmlspecialchars($request_uri) . '?' . http_build_query($params);
-
-  return $logout_url;
 }
 
 // render login form
@@ -310,131 +267,4 @@ function process_login_params($db, &$messages)
 {
   process_session_params($db, $messages);
 }
-
-// function to create user account
-function create_account($db, $name, $username, $password, $password_confirmation)
-{
-  global $signup_messages;
-
-  global $sticky_signup_username;
-  global $sticky_signup_name;
-
-  $name = trim($name);
-  $username = trim($username);
-  $password = trim($password);
-  $password_confirmation = trim($password_confirmation);
-
-  $sticky_signup_username = $username;
-  $sticky_signup_name = $name;
-
-  $account_valid = True;
-
-  $db->beginTransaction();
-
-  // check if username is unique, give error message if not.
-  if (empty($username)) {
-    $account_valid = False;
-    array_push($signup_messages, "Please provide a username.");
-  } else {
-    $records = exec_sql_query(
-      $db,
-      "SELECT username FROM users WHERE (username = :username);",
-      array(
-        ':username' => $username
-      )
-    )->fetchAll();
-    if (count($records) > 0) {
-      $account_valid = False;
-      array_push($signup_messages, "Username is already taken, please pick another username.");
-    }
-  }
-
-  // TODO: check if password meets security requirements.
-  if (empty($password)) {
-    $account_valid = False;
-    array_push($signup_messages, "Please provide a password.");
-  }
-
-  // Check if passwords match
-  if ($password != $password_confirmation) {
-    $account_valid = False;
-    array_push($signup_messages, "Password confirmation doesn't match your password. Please reenter your password.");
-  } else {
-    // hash the password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-  }
-
-  if ($account_valid) {
-    $result = exec_sql_query(
-      $db,
-      "INSERT INTO users (name, username, password) VALUES (:name, :username, :password);",
-      array(
-        ':name' => $name,
-        ':username' => $username,
-        ':password' => $hashed_password
-      )
-    );
-    if ($result) {
-      // account creation was successful. Login.
-      password_login($db, $messages, $username, $password);
-    } else {
-      array_push($messages, "Password confirmation doesn't match your password. Please reenter your password.");
-    }
-  }
-
-  $db->commit();
-}
-
-// render sign up form
-function signup_form($action, $signup_messages)
-{
-  global $sticky_signup_username;
-  global $sticky_signup_name;
-  ob_start();
 ?>
-  <ul class="signup">
-    <?php
-    foreach ($signup_messages as $message) {
-      echo "<li class=\"feedback\"><strong>" . htmlspecialchars($message) . "</strong></li>\n";
-    } ?>
-  </ul>
-
-  <form class="signup" action="<?php echo htmlspecialchars($action) ?>" method="post" novalidate>
-    <div class="label-input">
-      <label for="name">Name:</label>
-      <input id="name" type="text" name="signup_name" value="<?php echo htmlspecialchars($sticky_signup_name); ?>" required />
-    </div>
-
-    <div class="label-input">
-      <label for="username">Username:</label>
-      <input id="username" type="text" name="signup_username" value="<?php echo htmlspecialchars($sticky_signup_username); ?>" required />
-    </div>
-
-    <div class="label-input">
-      <label for="password">Password:</label>
-      <input id="password" type="password" name="signup_password" required />
-    </div>
-
-    <div class="label-input">
-      <label for="confirm_password">Confirm Password:</label>
-      <input id="confirm_password" type="password" name="signup_confirm_password" required />
-    </div>
-
-    <div class="align-right">
-      <button name="signup" type="submit">Sign Up</button>
-    </div>
-
-  </form>
-<?php
-  $html = ob_get_clean();
-  return $html;
-}
-
-// Check for sign up request
-function process_signup_params($db)
-{
-  // Check if we should login the user
-  if (isset($_POST['signup'])) {
-    create_account($db, $_POST['signup_name'], $_POST['signup_username'], $_POST['signup_password'], $_POST['signup_confirm_password']);
-  }
-}

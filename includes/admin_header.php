@@ -28,7 +28,7 @@
                 <p class="text-lg mt-1">Stephan's Cinematic Showcase</p>
             </div>
             <div>
-                <a href="" class="bg-white text-primary font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-100 transition duration-300">
+                <a href="/" class="bg-white text-primary font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-100 transition duration-300">
                     <i class="fas fa-home mr-2"></i>Home
                 </a>
             </div>

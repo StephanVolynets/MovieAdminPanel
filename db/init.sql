@@ -31,6 +31,24 @@ CREATE TABLE IF NOT EXISTS Film_Tags (
     FOREIGN KEY (tag_id) REFERENCES Tags(tag_id) ON DELETE CASCADE
 );
 
+-- Users Table
+CREATE TABLE users (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL,
+    is_admin INTEGER NOT NULL DEFAULT 0
+);
+
+-- create the sessions table
+CREATE TABLE IF NOT EXISTS sessions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    session TEXT NOT NULL,
+    last_login TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 -- Seed data for Top_Films
 INSERT INTO
     Top_Films (
@@ -220,3 +238,12 @@ VALUES
     (12, 7);
 
 -- Interstellar also has Sci-Fi
+INSERT INTO
+    users (name, username, password, is_admin)
+VALUES
+    (
+        'Admin',
+        'admin',
+        '$2y$10$QtCybkpkzh7x5VN11APHned4J8fu78.eFXlyAMmahuAaNcbwZ7FH.',
+        1
+    );

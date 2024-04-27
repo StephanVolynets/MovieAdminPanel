@@ -11,16 +11,16 @@ You can use bullet points and lists, or full paragraphs, or a combo, whichever i
 > Explain what your team revised in response to the Milestone 1 feedback (1-2 sentences)
 > If you didn't make any revisions, explain why.
 
-TODO: milestone feedback revisions
+I HAD NO FEEDBACK :()
 
 
 ## Contributors
 
 I affirm that I have contributed to the team requirements for this milestone.
 
-Consumer Lead: TODO: Full Name
+Consumer Lead: Stephan Volynets
 
-Admin Lead: TODO: Full Name
+Admin Lead: Stephan Volynets
 
 
 [← Table of Contents](design-journey.md)

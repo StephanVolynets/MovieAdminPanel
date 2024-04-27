@@ -10,13 +10,11 @@
         <h3 class="text-xl font-bold mb-4 text-center">Quick Links</h3>
         <ul class="space-y-2 text-center">
           <li><a href="#" class="hover:text-gray-300 transition duration-300">Home</a></li>
-          <li><a href="#" class="hover:text-gray-300 transition duration-300">About</a></li>
           <li><a href="#" class="hover:text-gray-300 transition duration-300">Contact</a></li>
-          <li><a href="#" class="hover:text-gray-300 transition duration-300">Privacy Policy</a></li>
         </ul>
       </div>
     <div class="ml-auto">
-      <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+      <h3 class="text-xl font-bold mb-4">Contact Us</h3>
       <div class="flex space-x-4 mb-4">
         <a href="#" class="text-white hover:text-gray-300 transition duration-300">
         <i class="fab fa-facebook fa-2x"></i>
@@ -28,10 +26,10 @@
         <i class="fab fa-instagram fa-2x"></i>
         </a>
       </div>
-      <form class="flex">
-        <input type="email" class="bg-gray-100 text-gray-800 rounded-l-lg py-2 px-4 focus:outline-none" placeholder="Enter your email">
-        <button class="bg-white text-blue-500 hover:bg-blue-600 hover:text-white font-bold py-2 px-4 rounded-r-lg transition duration-300">Mail</button>
-      </form>
+      <a href="mailto:svv6@cornell.edu" class="btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+    <i class="fas fa-envelope mr-2"></i>
+    Mail
+</a>
     </div>
       </div>
     </div>

@@ -7,14 +7,14 @@
 > Explain what you individually revised in response to the Milestone 1 feedback (1-2 sentences)
 > If you didn't make any revisions, explain why.
 
-TODO: milestone feedback revisions
+NONE
 
 
 ## Edit Form - UPDATE query
 > Plan your query to update an entry in your catalog.
 
 ```sql
-TODO: UPDATE query
+'UPDATE Top_Films SET title = ?, director = ?, release_year = ?, ranking = ?, awards = ? WHERE film_id = ?'
 ```
 
 
@@ -33,7 +33,7 @@ TODO: UPDATE query
 
 I affirm that I am submitting my work for the administrator requirements in this milestone.
 
-Admin Lead: TODO: Full Name
+Admin Lead: Stephan Volynets
 
 
 [← Table of Contents](../design-journey.md)

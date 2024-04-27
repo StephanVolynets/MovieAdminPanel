@@ -30,7 +30,7 @@
         <p class="text-md font-semibold tracking-wide">Version: Admin Panel v0.5 Beta</p>
       </div>
       <div class="mb-4 sm:mb-0">
-        <span class="block text-sm text-black font-semibold">© 2023 <a href="https://github.com/StephanVolynets" class="hover:underline">Stephan Volynets</a>. All Rights Reserved.</span>
+        <span class="block text-sm text-black font-semibold">© 2024 <a href="https://github.com/StephanVolynets" class="hover:underline">Stephan Volynets</a>. All Rights Reserved.</span>
       </div>
     </div>
   </div>

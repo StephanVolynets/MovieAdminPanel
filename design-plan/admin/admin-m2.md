@@ -7,14 +7,14 @@
 > Explain what you revised in response to the Milestone 1 feedback (1-2 sentences)
 > If you didn't make any revisions, explain why.
 
-TODO: milestone feedback revisions
+NO FEEDBACK
 
 
 ## Edit Page URL
 > Design the URL for the administrator's edit page.
 > What is the URL for the administrator's edit page?
 
-TODO: URL
+
 
 > What query string parameters will you include in the URL?
 

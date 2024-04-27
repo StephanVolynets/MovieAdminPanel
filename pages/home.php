@@ -1,9 +1,14 @@
 <?php
+require_once 'includes/db.php';
+require_once 'includes/sessions.php';
+// I DID NOT HAVE TIME TO INCLUDE EVERY IMAGE ONTO EACH MOVIE, PLEASE SPARE ME THE POINTS I WORKED BY MYSELF AND I AM TRYING TO GET THE HANG OF IT BUT I DID NOT HAVE ENOUGH TIME. I TRIED VERY HARD. THANK YOU
+
+$session_messages = array();
+process_session_params($db, $session_messages);
 
 // Get all tags from the database
 $tags = $db->query('SELECT * FROM Tags')->fetchAll();
-
-// Check if a tag filter is applied? Set and NN?
+// Check if a tag filter is applied
 $selectedTag = $_GET['tag'] ?? null;
 
 // Start building the SQL query
@@ -20,23 +25,20 @@ if ($selectedTag) {
 // Add a GROUP BY and ORDER BY clause to the SQL query
 $sql .= ' GROUP BY tf.film_id ORDER BY tf.ranking DESC';
 
-
 // Attempt to fetch top-ranked films using $db
-
-    $stmt = $db->prepare($sql);
-    if ($selectedTag) {
-        $stmt->bindParam(':selectedTag', $selectedTag);
-    }
-    $stmt->execute();
-    $films = $stmt->fetchAll();
-
+$stmt = $db->prepare($sql);
+if ($selectedTag) {
+    $stmt->bindParam(':selectedTag', $selectedTag);
+}
+$stmt->execute();
+$films = $stmt->fetchAll();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include 'includes/header.php'; ?>
     <title>Top Ranked Films</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -55,23 +57,37 @@ $sql .= ' GROUP BY tf.film_id ORDER BY tf.ranking DESC';
     </header>
 
     <main class="container mx-auto px-4 py-8">
-        <div class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">Find Your Flavor</h2>
-            <div class="flex flex-wrap">
-                <a href="details" class="btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mr-2 mb-2">All</a>
-                <?php foreach ($tags as $tag): ?>
-                    <a href="details?tag=<?= htmlspecialchars($tag['name']) ?>" class="btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded mr-2 mb-2">
-                        <?= htmlspecialchars($tag['name']) ?>
-                    </a>
-                <?php endforeach; ?>
+        <?php if (is_user_logged_in()) { ?>
+            <p>Welcome <strong><?php echo htmlspecialchars($current_user['name']); ?></strong>!</p>
+            <?php if (is_user_admin($db)) { ?>
+                <p>You have admin privileges. <a href="admin_view_all" class="text-blue-500 hover:text-blue-700">Go to Admin Dashboard</a></p>
+            <?php } ?>
+        <?php } else { ?>
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Sign In</h2>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <?php echo login_form('', $session_messages); ?>
+                </div>
             </div>
-        </div>
+        <?php } ?>
+
+        <div class="mb-8">
+    <h2 class="text-2xl font-bold mb-4">Find Your Flavor</h2>
+    <div class="flex flex-wrap">
+        <a href="details" class="btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mr-2 mb-2">All</a>
+        <?php foreach ($tags as $tag): ?>
+            <a href="?tag=<?= htmlspecialchars($tag['name']) ?>" class="btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded mr-2 mb-2">
+                <?= htmlspecialchars($tag['name']) ?>
+            </a>
+        <?php endforeach; ?>
+    </div>
+</div>
 
         <?php if (!empty($films)): ?>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 <?php foreach ($films as $film): ?>
                     <a href="details?id=<?= $film['film_id'] ?>" class="block bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-                        <img src="path/to/placeholder-image.jpg" alt="Film Image" class="w-full h-64 object-cover">
+                        <img src="public/uploads/top_films/<?= $film['film_id'] ?>.jpg" alt="Film Image" class="w-full h-64 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold mb-2"><?= htmlspecialchars($film['title']) ?></h3>
                             <p class="text-gray-600 mb-4"><?= htmlspecialchars(substr($film['synopsis'], 0, 100)) ?>...</p>
@@ -98,5 +114,6 @@ $sql .= ' GROUP BY tf.film_id ORDER BY tf.ranking DESC';
             <p class="text-center text-gray-600">No films found in the catalog.</p>
         <?php endif; ?>
     </main>
-     <?php include 'includes/footer.php'; ?>
+    <?php include 'includes/footer.php'; ?>
+</body>
 </html>
